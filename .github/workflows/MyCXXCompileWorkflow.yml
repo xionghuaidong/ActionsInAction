@@ -1,0 +1,25 @@
+name: My C++ Compile Workflow
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  MyCXXCompileJob:
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: echo "👋 Hello World!"
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Compile C++ Program
+        run: |
+          g++ src/hello.cpp
+
+      - name: Run C++ Program
+        run: |
+          ./a.out
