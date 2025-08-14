@@ -18,6 +18,9 @@ jobs:
                 whoami
                 whoami /groups | findstr /i "Administrators"
 
+            - name: Check Visual Studio info
+              run: |
+                & "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe" -all -products * -format json
 
             - name: Install v141_xp
               run: |
