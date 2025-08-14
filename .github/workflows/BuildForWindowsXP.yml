@@ -31,7 +31,7 @@ jobs:
                 & "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vs_installer.exe" modify --installPath "C:\Program Files\Microsoft Visual Studio\2022\Enterprise" --add Microsoft.VisualStudio.Component.VC.v141.x86.x64 --quiet --norestart
                 #& "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vs_installer.exe" modify --installPath "C:\Program Files\Microsoft Visual Studio\2022\Enterprise" --add Microsoft.VisualStudio.Component.VC.v141.x86.x64 --add Microsoft.VisualStudio.Component.VC.140 --add Microsoft.VisualStudio.Component.WinXP --quiet --norestart
                 echo "Wait Visual Studio Installer ..."
-                Wait-Process -Name "vs_installer"
+                Wait-Process -Name "vs_installer", "setup"
                 echo "Wait Visual Studio Installer done"
 
             - name: Check installed vs components again
