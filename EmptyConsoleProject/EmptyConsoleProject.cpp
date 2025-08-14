@@ -13,6 +13,6 @@ int _tmain(void)
     std::cout << "main\n";
     t.join();
 
-    MessageBox(NULL, TEXT("Hello, World! [C++]"), TEXT("hello"), MB_ICONINFORMATION);
+    //MessageBox(NULL, TEXT("Hello, World! [C++]"), TEXT("hello"), MB_ICONINFORMATION);
     return 0;
 }
