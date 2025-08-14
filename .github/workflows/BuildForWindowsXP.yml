@@ -1,0 +1,22 @@
+name: Build for Windows XP
+
+on:
+    push:
+        branches: [ main ]
+    workflow_dispatch:
+
+jobs:
+    build-xp:
+        runs-on: windows-2019
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: MSBuild for XP
+              run: |
+                msbuild EmptyConsoleProject\EmptyConsoleProject.sln /p:Configuration=Release /p:Platform=x86
+            - name: Upload artifact
+              uses: actions/upload-artifact@v3
+              with:
+                name: hello
+                path: EmptyConsoleProject\Release\*.exe
