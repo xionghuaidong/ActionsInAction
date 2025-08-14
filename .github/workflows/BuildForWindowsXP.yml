@@ -21,7 +21,10 @@ jobs:
 
             - name: Install v141_xp
               run: |
-                & "C:\Program Files (x86)\Microsoft Visual Studio\Installer\setup.exe" modify --installPath "C:\Program Files\Microsoft Visual Studio\2022\Enterprise" --add Microsoft.VisualStudio.Component.VC.v141.x86.x64 --add Microsoft.VisualStudio.Component.VC.140 --add Microsoft.VisualStudio.Component.WinXP --quiet --norestart --channelId VisualStudio.17.Release --channelUri https://aka.ms/vs/17/release/channel
+                & "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vs_installer.exe" modify --installPath "C:\Program Files\Microsoft Visual Studio\2022\Enterprise" --add Microsoft.VisualStudio.Component.VC.v141.x86.x64 --add Microsoft.VisualStudio.Component.VC.140 --add Microsoft.VisualStudio.Component.WinXP --quiet --norestart
+                echo "Wait Visual Studio Installer ..."
+                Wait-Process -Name "vs_installer"
+                echo "Wait Visual Studio Installer done"
 
             #- name: Install Windows XP support for Visual Studio (v141_xp)
             #  shell: pwsh
