@@ -22,12 +22,12 @@ jobs:
               run: |
                 & "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe" -all -products * -format json
 
-            - name: Install v141_xp
-              run: |
-                & "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vs_installer.exe" modify --installPath "C:\Program Files\Microsoft Visual Studio\2022\Enterprise" --add Microsoft.VisualStudio.Component.VC.v141.x86.x64 --add Microsoft.VisualStudio.Component.VC.140 --add Microsoft.VisualStudio.Component.WinXP --quiet --norestart
-                echo "Wait Visual Studio Installer ..."
-                Wait-Process -Name "vs_installer"
-                echo "Wait Visual Studio Installer done"
+            #- name: Install v141_xp
+            #  run: |
+            #    & "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vs_installer.exe" modify --installPath "C:\Program Files\Microsoft Visual Studio\2022\Enterprise" --add Microsoft.VisualStudio.Component.VC.v141.x86.x64 --add Microsoft.VisualStudio.Component.VC.140 --add Microsoft.VisualStudio.Component.WinXP --quiet --norestart
+            #    echo "Wait Visual Studio Installer ..."
+            #    Wait-Process -Name "vs_installer"
+            #    echo "Wait Visual Studio Installer done"
 
             #- name: Install Windows XP support for Visual Studio (v141_xp)
             #  shell: pwsh
@@ -54,11 +54,16 @@ jobs:
             #- name: MSBuild for XP
             #  run: |
             #    & "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\amd64\MSBuild.exe" EmptyConsoleProject\EmptyConsoleProject.sln /p:Configuration=Release /p:Platform=x86 /p:PlatformToolset=v141_xp
+            #
+
+            - name: Check MSVC6
+              run: |
+                cmd /c "call .\MSVC6\MSVC6\VC98\Bin\VCVARS32.BAT && cl"
 
 
             - name: Build With MSVC6
               run: |
-                .\MSVC6\VC98\Bin\CL.EXE src\hello.cpp
+                cmd /c "call .\MSVC6\MSVC6\VC98\Bin\VCVARS32.BAT && cl src\hello.cpp"
 
             - name: Run C++ Program
               run: |
