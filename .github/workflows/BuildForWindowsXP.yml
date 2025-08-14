@@ -26,14 +26,19 @@ jobs:
               run: |
                  & "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe" -all -products * -property instanceId | %{cat -Path C:\ProgramData\Microsoft\VisualStudio\Packages\_Instances\$_\state.json}
 
-            - name: Install v141_xp
-              run: |
-                & "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vs_installer.exe" modify --installPath "C:\Program Files\Microsoft Visual Studio\2022\Enterprise" --add Microsoft.VisualStudio.Component.VC.v141.x86.x64 --quiet --norestart
-                #& "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vs_installer.exe" modify --installPath "C:\Program Files\Microsoft Visual Studio\2022\Enterprise" --add Microsoft.VisualStudio.Component.VC.v141.x86.x64 --add Microsoft.VisualStudio.Component.VC.140 --add Microsoft.VisualStudio.Component.WinXP --quiet --norestart
-                Start-Sleep -Seconds 3
-                echo "Wait Visual Studio Installer ..."
-                Wait-Process -Name "vs_installer", "setup"
-                echo "Wait Visual Studio Installer done"
+            #- name: Install v141_xp
+            #  run: |
+            #    & "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vs_installer.exe" modify --installPath "C:\Program Files\Microsoft Visual Studio\2022\Enterprise" --add Microsoft.VisualStudio.Component.VC.v141.x86.x64 --quiet --norestart
+            #    #& "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vs_installer.exe" modify --installPath "C:\Program Files\Microsoft Visual Studio\2022\Enterprise" --add Microsoft.VisualStudio.Component.VC.v141.x86.x64 --add Microsoft.VisualStudio.Component.VC.140 --add Microsoft.VisualStudio.Component.WinXP --quiet --norestart
+            #    Start-Sleep -Seconds 3
+            #    echo "Wait Visual Studio Installer ..."
+            #    Wait-Process -Name "vs_installer", "setup"
+            #    echo "Wait Visual Studio Installer done"
+
+            - uses: thepwrtank18/install-vs-components@main
+              with:
+                #components: Microsoft.VisualStudio.Component.WinXP,Microsoft.VisualStudio.Component.VC.140
+                components: Microsoft.VisualStudio.Component.VC.v141.x86.x64
 
             - name: Check installed vs components again
               run: |
@@ -50,10 +55,6 @@ jobs:
             #    # productId: 根据 runner 的 VS 版本调整为 Microsoft.VisualStudio.Product.Community/Professional/Enterprise
             #    & $vsInstaller modify --productId Microsoft.VisualStudio.Product.Enterprise --add Microsoft.VisualStudio.Component.WinXP --quiet --wait --norestart
             #    if ($LASTEXITCODE -ne 0) { Write-Error "Failed to add WinXP component"; exit $LASTEXITCODE }
-
-            #- uses: thepwrtank18/install-vs-components@main
-            #  with:
-            #    components: Microsoft.VisualStudio.Component.WinXP,Microsoft.VisualStudio.Component.VC.140
 
 
             - name: Verify v141_xp toolset present
