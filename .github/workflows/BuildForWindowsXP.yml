@@ -19,9 +19,9 @@ jobs:
                 whoami /groups | findstr /i "Administrators"
 
 
-#            - name: Install v141_xp
-#              run: |
-#                & "C:\Program Files (x86)\Microsoft Visual Studio\Installer\setup.exe" modify --installPath "C:\Program Files\Microsoft Visual Studio\2022\Enterprise" --add Microsoft.VisualStudio.Component.VC.v141.x86.x64 --add Microsoft.VisualStudio.Component.VC.140 --add Microsoft.VisualStudio.Component.WinXP --quiet --norestart
+            - name: Install v141_xp
+              run: |
+                & "C:\Program Files (x86)\Microsoft Visual Studio\Installer\setup.exe" modify --installPath "C:\Program Files\Microsoft Visual Studio\2022\Enterprise" --add Microsoft.VisualStudio.Component.VC.v141.x86.x64 --add Microsoft.VisualStudio.Component.VC.140 --add Microsoft.VisualStudio.Component.WinXP --quiet --norestart --channelId VisualStudio.17.Release --channelUri https://aka.ms/vs/17/release/channel
 
             #- name: Install Windows XP support for Visual Studio (v141_xp)
             #  shell: pwsh
@@ -35,9 +35,9 @@ jobs:
             #    & $vsInstaller modify --productId Microsoft.VisualStudio.Product.Enterprise --add Microsoft.VisualStudio.Component.WinXP --quiet --wait --norestart
             #    if ($LASTEXITCODE -ne 0) { Write-Error "Failed to add WinXP component"; exit $LASTEXITCODE }
 
-            - uses: thepwrtank18/install-vs-components@main
-              with:
-                components: Microsoft.VisualStudio.Component.WinXP,Microsoft.VisualStudio.Component.VC.140
+            #- uses: thepwrtank18/install-vs-components@main
+            #  with:
+            #    components: Microsoft.VisualStudio.Component.WinXP,Microsoft.VisualStudio.Component.VC.140
 
 
             - name: Verify v141_xp toolset present
