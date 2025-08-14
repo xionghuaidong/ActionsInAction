@@ -58,7 +58,7 @@ jobs:
 
             - name: Check MSVC6
               run: |
-                cmd.exe /c "call .\MSVC6\MSVC6\VC98\Bin\VCVARS32.BAT && cl"
+                cmd.exe /c & "call .\MSVC6\MSVC6\VC98\Bin\VCVARS32.BAT && cl"
 
 
             - name: Build With MSVC6
