@@ -69,12 +69,12 @@ jobs:
 
             - name: Build With MSVC6
               run: |
-                cmd.exe /c "call .\MSVC6\VC98\Bin\VCVARS32.BAT && cl src\hello.cpp"
+                cmd.exe /c "call .\MSVC6\VC98\Bin\VCVARS32.BAT && cl /nologo /EHsc src\hello.cpp"
               shell: cmd
 
             - name: Run C++ Program
               run: |
-                hello.exe
+                .\hello.exe
 
             - name: Upload artifact
               uses: actions/upload-artifact@v4
