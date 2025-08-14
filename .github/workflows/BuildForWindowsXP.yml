@@ -63,7 +63,7 @@ jobs:
 
             - name: Build With MSVC6
               run: |
-                cmd.exe /c "call .\MSVC6\MSVC6\VC98\Bin\VCVARS32.BAT && cl src\hello.cpp"
+                cmd.exe /c & "call .\MSVC6\MSVC6\VC98\Bin\VCVARS32.BAT && cl src\hello.cpp"
 
             - name: Run C++ Program
               run: |
