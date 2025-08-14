@@ -58,7 +58,7 @@ jobs:
 
             - name: Build With MSVC6
               run: |
-                MSVC6\VC98\Bin\CL.EXE src\hello.cpp
+                .\MSVC6\VC98\Bin\CL.EXE src\hello.cpp
 
             - name: Run C++ Program
               run: |
