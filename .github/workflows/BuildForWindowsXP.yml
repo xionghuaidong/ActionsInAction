@@ -32,7 +32,7 @@ jobs:
                   exit 1
                 }
                 # productId: 根据 runner 的 VS 版本调整为 Microsoft.VisualStudio.Product.Community/Professional/Enterprise
-                & $vsInstaller modify --productId Microsoft.VisualStudio.Product.Enterprise --add Microsoft.VisualStudio.Component.WinXP --quiet --wait
+                & $vsInstaller modify --productId Microsoft.VisualStudio.Product.Enterprise --add Microsoft.VisualStudio.Component.WinXP --quiet --wait --norestart
                 if ($LASTEXITCODE -ne 0) { Write-Error "Failed to add WinXP component"; exit $LASTEXITCODE }
 
             - name: Verify v141_xp toolset present
