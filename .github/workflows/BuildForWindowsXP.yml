@@ -44,6 +44,7 @@ jobs:
                   $InstallPath = "C:\Program Files\Microsoft Visual Studio\2022\Enterprise"
                   $componentsToAdd = @(
                         "Microsoft.VisualStudio.Component.VC.v141.x86.x64"
+                        "Microsoft.VisualStudio.Component.WinXP"
                   )
                   [string]$workloadArgs = $componentsToAdd | ForEach-Object {" --add " +  $_}
                   $Arguments = ('/c', "vs_installer.exe", 'modify', '--installPath', "`"$InstallPath`"",$workloadArgs, '--quiet', '--norestart', '--nocache')
@@ -85,12 +86,6 @@ jobs:
               run: |
                 & "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe" -all -products * -requires Microsoft.VisualStudio.Component.WinXP -property installationPath || Write-Host "vswhere finished"
 
-            #- name: MSBuild for XP
-            #  run: |
-            #    & "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\amd64\MSBuild.exe" EmptyConsoleProject\EmptyConsoleProject.sln /p:Configuration=Release /p:Platform=x86 /p:PlatformToolset=v141_xp
-            #
-            #
-
             - name: Show Files
               run: |
                 dir
@@ -110,9 +105,23 @@ jobs:
               run: |
                 .\hello.exe
 
+            - name: MSBuild for XP
+              run: |
+                & "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\amd64\MSBuild.exe" EmptyConsoleProject\EmptyConsoleProject.sln /p:Configuration=Release /p:Platform=x86 /p:PlatformToolset=v141_xp
+
+            - name: Run C++ Program again
+              run: |
+                .\EmptyConsoleProject\Release\EmptyConsoleProject.exe
+
             - name: Upload artifact
               uses: actions/upload-artifact@v4
               with:
                 name: hello
                 #path: EmptyConsoleProject\Release\*.exe
                 path: .\*.exe
+
+            - name: Upload artifact again
+              uses: actions/upload-artifact@v4
+              with:
+                name: hello2
+                path: EmptyConsoleProject\Release\*.exe
