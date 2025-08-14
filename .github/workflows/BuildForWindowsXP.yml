@@ -35,7 +35,7 @@ jobs:
             #    & $vsInstaller modify --productId Microsoft.VisualStudio.Product.Enterprise --add Microsoft.VisualStudio.Component.WinXP --quiet --wait --norestart
             #    if ($LASTEXITCODE -ne 0) { Write-Error "Failed to add WinXP component"; exit $LASTEXITCODE }
 
-            - uses: thepwrtank18/install-vs-components@v1
+            - uses: thepwrtank18/install-vs-components@main
               with:
                 components: Microsoft.VisualStudio.Component.WinXP
 
