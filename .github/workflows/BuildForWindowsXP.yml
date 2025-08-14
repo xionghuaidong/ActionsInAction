@@ -35,6 +35,8 @@ jobs:
                 Get-Process -Name "vs_installer", "setup"
                 Wait-Process -Name "vs_installer", "setup"
                 echo "Wait Visual Studio Installer done"
+                Get-Process -Name "vs_installer", "setup"
+                echo "Check Visual Studio Installer done"
 
             #- uses: thepwrtank18/install-vs-components@main
             #  with:
